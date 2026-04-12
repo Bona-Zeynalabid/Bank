@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use('/api/wallet', require('./routes/walletRoutes'));
 // Add this with other route imports
 app.use('/api/wallet/notifications', require('./routes/notificationRoutes'));
-app.use('/api/wallet/card', require('./routes/cardRoutes'));
+app.use('/api/wallet/card', require('./routes/CardRoutes'));
 // Add payment gateway routes
 app.use('/api/wallet/payment', require('./routes/PaymentGatewayRoutes'));
 
