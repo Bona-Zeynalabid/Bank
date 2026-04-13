@@ -90,12 +90,11 @@ router.post("/google", async (req, res) => {
     );
 
     // Set cookie
-  res.cookie('wallet_user', token, {
+ res.cookie('wallet_user', token, {
   httpOnly: true,
-  maxAge: 7 * 24 * 60 * 60 * 1000,
   secure: true,
   sameSite: 'none',
-  domain: '.onrender.com'
+  maxAge: 7 * 24 * 60 * 60 * 1000
 });
 
     // Send welcome notification only for new users
