@@ -13,7 +13,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: (origin, callback) => callback(null, true),
+  origin: 'https://walletpay-ampersand.netlify.app',
   credentials: true
 }));
 app.use(express.json());
