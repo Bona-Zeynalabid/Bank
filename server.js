@@ -26,15 +26,15 @@ const publicCors = cors({
   origin: '*'
 });
 
-
+// Public payment route
+app.use('/api/wallet/payment', publicCors, require('./routes/PaymentGatewayRoutes'));
 
 //  Protected routes
 app.use('/api/wallet', restrictedCors, require('./routes/walletRoutes'));
 app.use('/api/wallet/notifications', restrictedCors, require('./routes/notificationRoutes'));
 app.use('/api/wallet/card', restrictedCors, require('./routes/CardRoutes'));
 
-// Public payment route
-app.use('/api/wallet/payment', publicCors, require('./routes/PaymentGatewayRoutes'));
+
 
 
 app.use((req, res) => {
