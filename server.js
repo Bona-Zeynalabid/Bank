@@ -10,7 +10,7 @@ connectDB();
 
 const app = express();
 
-
+app.use('/api/wallet/payment',cors(), require('./routes/PaymentGatewayRoutes'));
 // Middleware
 app.use(cors({
   origin: 'https://walletpay-ampersand.netlify.app',
@@ -29,7 +29,7 @@ app.use('/api/wallet', require('./routes/walletRoutes'));
 app.use('/api/wallet/notifications', require('./routes/notificationRoutes'));
 app.use('/api/wallet/card', require('./routes/CardRoutes'));
 // Add payment gateway routes
-app.use('/api/wallet/payment', require('./routes/PaymentGatewayRoutes'));
+//app.use('/api/wallet/payment', require('./routes/PaymentGatewayRoutes'));
 
 // 404 handler
 app.use((req, res) => {
