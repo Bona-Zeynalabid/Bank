@@ -4,31 +4,34 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 
-
 dotenv.config();
 connectDB();
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: 'https://walletpay-ampersand.netlify.app',
-  credentials: true
-}));
+// Middleware for all routes
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Request logging middleware
+// Public payment routes - accessible from anywhere
+app.use('/api/wallet/payment', cors(), require('./routes/paymentGatewayRoutes'));
 
+// Protected routes - only your frontend
+app.use('/api/wallet', cors({
+  origin: 'https://walletpay-ampersand.netlify.app',
+  credentials: true
+}), require('./routes/walletRoutes'));
 
-// Routes
-app.use('/api/wallet', require('./routes/walletRoutes'));
-// Add this with other route imports
-app.use('/api/wallet/notifications', require('./routes/notificationRoutes'));
-app.use('/api/wallet/card', require('./routes/CardRoutes'));
-// Add payment gateway routes
-app.use('/api/wallet/payment', require('./routes/PaymentGatewayRoutes'));
+app.use('/api/wallet/notifications', cors({
+  origin: 'https://walletpay-ampersand.netlify.app',
+  credentials: true
+}), require('./routes/notificationRoutes'));
+
+app.use('/api/wallet/card', cors({
+  origin: 'https://walletpay-ampersand.netlify.app',
+  credentials: true
+}), require('./routes/CardRoutes'));
 
 // 404 handler
 app.use((req, res) => {
