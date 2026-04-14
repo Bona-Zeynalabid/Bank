@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Public payment routes - accessible from anywhere
-app.use('/api/wallet/payment', cors(), require('./routes/paymentGatewayRoutes'));
+app.use('/api/wallet/payment', cors(), require('./routes/PaymentGatewayRoutes'));
 
 // Protected routes - only your frontend
 app.use('/api/wallet', cors({
