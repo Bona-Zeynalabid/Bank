@@ -34,8 +34,7 @@ const notificationSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-    expires: '72h' // Auto-delete after 3 days
+    default: Date.now
   }
 });
 
