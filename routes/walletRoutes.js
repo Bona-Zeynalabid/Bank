@@ -70,12 +70,7 @@ const requireAuth = async (req, res, next) => {
   }
 };
 
-// ============================================
-// MERCHANT API KEY MANAGEMENT
-// ============================================
 
-// Create API Key
-// Create API Key
 router.post('/api-key/create', requireAuth, async (req, res) => {
   try {
     const { merchantName, callbackUrl } = req.body;
